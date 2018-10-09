@@ -45,6 +45,8 @@ Component({
         handleInputChange(event) {
             const { detail = {} } = event;
             const { value = '' } = detail;
+
+            console.log(value);
             this.setData({ value });
 
             this.triggerEvent('change', event);
