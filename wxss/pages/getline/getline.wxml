@@ -1,0 +1,10 @@
+<!-- index.wxml -->
+<view class="page">
+    <view class="page__bd">
+        <wux-search-bar value="{{ value }}" auto="{{ false }}" placeholder="搜索线路、站点" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:cancel="onCancel" />
+    </view>
+</view>
+
+<view class="line_info">
+    
+</view>

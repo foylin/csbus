@@ -1,9 +1,9 @@
 //index.js
+
+const util = require('../../utils/util.js');
+
 //获取应用实例
 const app = getApp()
-
-const { $Message } = require('../../dist/base/index');
-
 
 Page({
   data: {
@@ -12,27 +12,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     value: '',
-    current: 'homepage',
-    visible2: false,
-        //小程序没有refs，所以只能用动态布尔值控制关闭
-        toggle : false,
-        toggle2 : false,
-        actions2: [
-            {
-                name: '删除',
-                color: '#ed3f14'
-            }
-        ],
-    actions: [
-      {
-        name: '收藏',
-        color: '#fff',
-        fontsize: '20',
-        width: 100,
-        icon: 'like',
-        background: '#ed3f14'
-      }
-    ]
+    line_list: ''
   },
   //事件处理函数
   bindViewTap: function () {
@@ -41,6 +21,7 @@ Page({
     })
   },
   onLoad: function () {
+    console.log(util.apiUrl);
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -76,10 +57,52 @@ Page({
       hasUserInfo: true
     })
   },
-  handleChange: function(e){
-    console.log(e.detail.value.bus);
+  onChange(e) {
+		console.log('onChange', e.detail.value)
+		this.setData({
+			value: e.detail.value,
+		})
+	},
+	onFocus(e) {
+		console.log('onFocus', e)
+	},
+	onBlur(e) {
+		console.log('onBlur', e)
+	},
+	onConfirm(e) {
+    // console.log('onConfirm', e)
+    wx.request({
+      url: util.apiUrl+'lines.search', //仅为示例，并非真实的接口地址
+      method: 'POST',
+      data: {
+        linename: e.detail.value
+      },
+      header: {
+        // 'content-type': 'application/json' // 默认值
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: res =>{
+        // console.log(res.data)
+        this.setData({
+          line_list: res.data.data
+        })
+
+      }
+    })
+	},
+	onClear(e) {
+		console.log('onClear', e)
+		this.setData({
+			value: '',
+		})
+	},
+	onCancel(e) {
+		console.log('onCancel', e)
   },
-  searchbus: function(e){
-    console.log(e.detail.value.bus);
+  getLine: function(e){
+    console.log(e);
+    wx.navigateTo({
+      url: '../getline/getline?lineid='+e.currentTarget.dataset.line
+    })
   }
 })

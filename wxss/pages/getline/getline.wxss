@@ -1,0 +1,4 @@
+/**index.wxss**/
+.line{
+    margin-top:50rpx;
+  }

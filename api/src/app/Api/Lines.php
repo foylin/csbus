@@ -21,12 +21,17 @@ class Lines extends Api
 
     public function getRules()
     {
-        // return array(
-        //     'login' => array(
-        //         'username' => array('name' => 'username', 'require' => true, 'min' => 1, 'max' => 50, 'desc' => '用户名'),
-        //         'password' => array('name' => 'password', 'require' => true, 'min' => 6, 'max' => 20, 'desc' => '密码'),
-        //     ),
-        // );
+        return array(
+            'search' => array(
+                'linename' => array('name' => 'linename', 'source'=> 'post', 'require' => true, 'min' => 1, 'max' => 50, 'desc' => '线路名称')
+            ),
+            'getStation' => array(
+                'lineid' => array('name' => 'lineid', 'source'=> 'post', 'require' => true, 'min' => 1, 'max' => 50, 'desc' => '线路名称')
+            ),
+            'getLineById' => array(
+                'lineid' => array('name' => 'lineid', 'source'=> 'post', 'require' => true, 'min' => 1, 'max' => 50, 'desc' => '线路名称')
+            ),
+        );
     }
     
     /**
@@ -36,6 +41,20 @@ class Lines extends Api
      */
     public function search(){
         try {
+            // var_dump($_REQUEST);
+            // echo $this->linename;
+            // exit();
+            $cache_name = 'search_'.$this->linename;
+
+            $data = \PhalApi\DI()->cache->get($cache_name);
+            // var_dump($data);
+            if(!empty($data)){
+                
+                return json_decode($data);
+            }
+
+
+            
             // 实例化时也可指定失败重试次数，这里是2次，即最多会进行3次请求
             $curl = new \PhalApi\CUrl();
 
@@ -43,8 +62,8 @@ class Lines extends Api
             $url = 'http://183.232.33.171/BusAPI.asmx/GetLines?ticket='.$ticket;
 
             $param = array(
-                'lineName' => 1,
-                'ticket' => 'e42074deb71434856664adc873b45dcf'
+                'lineName' => $this->linename,
+                'ticket' => $ticket
             );
             // 第二个参数为待POST的数据；第三个参数表示超时时间，单位为毫秒
 
@@ -58,10 +77,24 @@ class Lines extends Api
             $rs = $curl->post($url, http_build_query($param), 3000);
 
             // 一样的输出
-            // echo $rs;
+            // echo $rs;exit();
+            // return $rs;
+            // $rs_deconde = json_decode($rs);
+            if( strpos($rs, 'E3')){
+                return array('msg'=> '数据错误，请稍后重试');
+            }
+
+            // return array('msg'=> '数据错误');
+
+            // PhalApi\DI()->cache = new PhalApi\Cache\FileCache(array('path' => API_ROOT . '/runtime', 'prefix' => 'bus'));
+            // 设置
+            \PhalApi\DI()->cache->set($cache_name, $rs, 60*60*24*7);
+
             return json_decode($rs);
         } catch (\PhalApi\Exception\InternalServerErrorException $ex) {
             // 错误处理……
+            // var_dump($ex);
+            
         }
 
         // $ticket = 'e42074deb71434856664adc873b45dcf';
@@ -99,11 +132,21 @@ class Lines extends Api
      */
     public function getStation(){
         try {
+
+            $cache_name = 'getStation_'.$this->lineid;
+
+            $data = \PhalApi\DI()->cache->get($cache_name);
+            // var_dump($data);
+            // if(!empty($data) || !strpos($data, 'E3')){
+                
+            //     return json_decode($data);
+            // }
+
             // 实例化时也可指定失败重试次数，这里是2次，即最多会进行3次请求
             $curl = new \PhalApi\CUrl();
 
             $ticket = $this->ticket;
-            $lineid = '140724024716927';
+            $lineid = $this->lineid;
             $url = 'http://183.232.33.171/BusAPI.asmx/GetStationLicense?ticket=' . $ticket . '&Lineid='.$lineid;
 
             $param = array(
@@ -125,9 +168,19 @@ class Lines extends Api
 
             // 一样的输出
             // echo $rs;
-            return json_decode($rs);
+            // echo $rs[0];
+            // exit();
+
+            if( strpos($rs, 'E3')){
+                return array('msg'=> '数据错误，请稍后重试');
+            }
+
+            // \PhalApi\DI()->cache->set($cache_name, $rs, 60*60*24*7);
+
+            // return json_decode($rs);
         } catch (\PhalApi\Exception\InternalServerErrorException $ex) {
             // 错误处理……
+            var_dump($ex);
         }
     }
 
@@ -138,11 +191,21 @@ class Lines extends Api
      */
     public function getLineById(){
         try {
+
+            $cache_name = 'getlinebyid_'.$this->lineid;
+
+            $data = \PhalApi\DI()->cache->get($cache_name);
+            // var_dump($data);
+            if(!empty($data)){
+                
+                return json_decode($data);
+            }
+
             // 实例化时也可指定失败重试次数，这里是2次，即最多会进行3次请求
             $curl = new \PhalApi\CUrl();
 
             $ticket = $this->ticket;
-            $lineid = '140724024716927';
+            $lineid = $this->lineid;
             $url = 'http://183.232.33.171/BusAPI.asmx/GetLineById?ticket=' . $ticket . '&Lineid=' . $lineid;
 
             $param = array(
@@ -164,9 +227,18 @@ class Lines extends Api
 
             // 一样的输出
             // echo $rs;
+            if( strpos($rs, 'E3')){
+                return array('msg'=> '数据错误，请稍后重试');
+            }
+
+            \PhalApi\DI()->cache->set($cache_name, $rs, 60*60*24*7);
+
             return json_decode($rs);
         } catch (\PhalApi\Exception\InternalServerErrorException $ex) {
             // 错误处理……
+            var_dump($ex);
+            // return $ex['message'];
+
         }
     }
 

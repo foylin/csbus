@@ -2,13 +2,15 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/getline/getline"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "潮汕Bus",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "潮汕实时公交",
+    "navigationBarTextStyle":"black",
+    "backgroundColor": "#eeeeee"
   },
   "tabBar": {
     "list": [{
