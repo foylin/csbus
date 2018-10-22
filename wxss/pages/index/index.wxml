@@ -17,3 +17,21 @@
 </view>
 
 </block>
+
+
+
+<wux-tabbar default-current="tab1" position="bottom">
+    <wux-tabbar-item key="tab1" title="首页">
+        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="tab2" title="收藏">
+        <wux-icon wux-class="icon" type="ios-heart" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-heart" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="tab3" title="推荐" share>
+        <wux-icon wux-class="icon" type="ios-paw" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-paw" size="22" slot="icon-off" />
+        
+    </wux-tabbar-item>
+</wux-tabbar>

@@ -2,6 +2,10 @@
     "usingComponents": {
         "wux-search-bar": "../../dist_wux/search-bar/index",
         "wux-card": "../../dist_wux/card/index",
-        "wux-wing-blank": "../../dist_wux/wing-blank/index"
+        "wux-wing-blank": "../../dist_wux/wing-blank/index",
+        "wux-icon": "../../dist_wux/icon/index",
+        "wux-badge": "../../dist_wux/badge/index",
+        "wux-tabbar": "../../dist_wux/tabbar/index",
+        "wux-tabbar-item": "../../dist_wux/tabbar-item/index"
     }
 }

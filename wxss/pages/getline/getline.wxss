@@ -2,3 +2,114 @@
 .line{
     margin-top:50rpx;
   }
+
+.line_head{
+  font-size: 26rpx;
+  background:#fcfcfc;
+  /* margin: 10rpx; */
+  padding: 22rpx 20rpx;
+}
+
+.line_ses{
+  font-size: 30rpx;
+  color: #323436;
+  margin-bottom: 10rpx;
+}
+
+.line_sem{
+  color: #7b7a7c;
+}
+
+.scroll-header{
+  display: flex;
+  white-space: nowrap;  
+  /* 这个很重要， */
+  }
+  .scroll-header .scroll-view-item{
+  /* height:1rpx; */
+  /* width:100rpx; */
+  margin-top: 300rpx;
+  display: inline-block; 
+  /* 这个也很重要 */
+  position: relative;
+    height: 500rpx;
+}
+
+  .scroll-view-line{
+    width: 160rpx;
+    height: 10rpx;
+    background: #1494e3;
+    /* display: inline-block;  */
+    float: left;
+  }
+
+.scroll-view-point{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background:#1494e3;
+  /* display: inline-block;  */
+  margin-top: -10rpx;
+  /* display: flex; */
+  float: left;
+}
+
+.scroll-view-station{
+  position: absolute;
+  /* width: 20rpx; */
+  font-size: 28rpx;
+  /* float: left; */
+  top: 64rpx;
+  left: 150rpx;
+  
+  writing-mode:vertical-lr;
+}
+
+.scroll-view-station-number{
+  position: absolute;
+  /* width: 20rpx; */
+  font-size: 28rpx;
+  /* float: left; */
+  top: 28rpx;
+  left: 166rpx;
+  
+  /* writing-mode:vertical-lr; */
+}
+
+.scroll-view-item-first .scroll-view-line{
+  width: 50rpx;
+  height: 10rpx;
+  background: #1494e3;
+  /* display: inline-block;  */
+  float: left;
+}
+
+.scroll-view-item-first .scroll-view-station{
+  position: absolute;
+  /* width: 20rpx; */
+  font-size: 28rpx;
+  /* float: left; */
+  top: 64rpx;
+  left: 45rpx;
+  
+  writing-mode:vertical-lr;
+}
+
+.scroll-view-item-first .scroll-view-station-number{
+  position: absolute;
+  /* width: 20rpx; */
+  font-size: 28rpx;
+  /* float: left; */
+  top: 28rpx;
+  left: 58rpx;
+  
+  /* writing-mode:vertical-lr; */
+}
+
+.scroll-view-line-end{
+  width: 50rpx;
+  height: 10rpx;
+  background: #1494e3;
+  /* display: inline-block;  */
+  float: left;
+}

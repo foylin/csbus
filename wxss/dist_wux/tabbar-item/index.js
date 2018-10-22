@@ -21,6 +21,10 @@ Component({
             type: Boolean,
             value: false,
         },
+        share: {
+            type: Boolean,
+            value: ''
+        }
     },
     data: {
         width: '100%',

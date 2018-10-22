@@ -13,46 +13,58 @@ Page({
 
 
         // 线路信息
-        wx.request({
-            url: util.apiUrl + 'lines.getLineById', //仅为示例，并非真实的接口地址
-            method: 'POST',
-            data: {
-                lineid: this.data.lineid
-            },
-            header: {
-                // 'content-type': 'application/json' // 默认值
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            success: res => {
-                console.log(res.data)
-                wx.setNavigationBarTitle({
-                    title: res.data.data.LineName
-                })
+        // wx.request({
+        //     url: util.apiUrl + 'lines.getLineById', //仅为示例，并非真实的接口地址
+        //     method: 'POST',
+        //     data: {
+        //         lineid: this.data.lineid
+        //     },
+        //     header: {
+        //         // 'content-type': 'application/json' // 默认值
+        //         'content-type': 'application/x-www-form-urlencoded'
+        //     },
+        //     success: res => {
+        //         console.log(res.data)
+        //         wx.setNavigationBarTitle({
+        //             title: res.data.data.LineName
+        //         })
 
 
-            }
-        })
+        //     }
+        // })
 
         //站点信息
-        wx.request({
-            url: util.apiUrl + 'lines.getStation', //仅为示例，并非真实的接口地址
-            method: 'POST',
-            data: {
-                lineid: this.data.lineid
-            },
-            header: {
-                // 'content-type': 'application/json' // 默认值
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            success: res => {
-                console.log(res.data)
-                wx.setNavigationBarTitle({
-                    title: res.data.data.LineName
-                })
+        // wx.request({
+        //     url: util.apiUrl + 'lines.getStation', //仅为示例，并非真实的接口地址
+        //     method: 'POST',
+        //     data: {
+        //         lineid: this.data.lineid
+        //     },
+        //     header: {
+        //         // 'content-type': 'application/json' // 默认值
+        //         'content-type': 'application/x-www-form-urlencoded'
+        //     },
+        //     success: res => {
+        //         console.log(res.data)
+        //         wx.setNavigationBarTitle({
+        //             title: res.data.data.LineName
+        //         })
 
 
-            }
+        //     }
+        // })
+
+    },
+
+    tabbarchange(e) {
+        console.log('onChange', e)
+        this.setData({
+            current: e.detail.key,
         })
-
+        if(e.detail.key == 'tab-home'){
+            wx.navigateTo({
+                            url: '../index/index'
+                        })
+        }
     }
 })

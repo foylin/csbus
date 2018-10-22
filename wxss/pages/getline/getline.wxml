@@ -1,10 +1,95 @@
 <!-- index.wxml -->
-<view class="page">
+<!-- <view class="page">
     <view class="page__bd">
         <wux-search-bar value="{{ value }}" auto="{{ false }}" placeholder="搜索线路、站点" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:cancel="onCancel" />
     </view>
+</view> -->
+
+<view class="line_head">
+    <view class="line_ses">海门莲花峰 → 董明光中学</view>
+    <view class="line_sem">
+        <text decode="{{true}}">首 06:00  末 17:55&nbsp;・&nbsp;票价13元（分段收费）</text>
+    </view>
+    <!-- <view>票价 13元（分段收费）</view> -->
 </view>
 
+
 <view class="line_info">
-    
+
+    <scroll-view scroll-x class="scroll-header">
+        <view id="green" class="scroll-view-item scroll-view-item-first">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station-number">1</text>
+            <text class="scroll-view-station">海门莲花峰</text>
+        </view>
+
+        <view id="green" class="scroll-view-item">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station-number">1</text>
+            <text class="scroll-view-station">海门莲花峰</text>
+        </view>
+
+        <view id="green" class="scroll-view-item">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station-number">2</text>
+            <text class="scroll-view-station">海门莲花峰</text>
+        </view>
+
+        <view id="green" class="scroll-view-item">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station">海门莲花峰</text>
+        </view>
+
+        <view id="green" class="scroll-view-item">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station">海门莲花峰</text>
+        </view>
+
+        <view id="green" class="scroll-view-item">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station">海门莲花峰</text>
+        </view>
+
+        <view id="green" class="scroll-view-item">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station">海门莲花峰</text>
+        </view>
+
+        <view id="green" class="scroll-view-item scroll-view-item-end">
+            <view class="scroll-view-line"></view>
+            <view class="scroll-view-point"></view>
+            <text class="scroll-view-station">海门莲花峰</text>
+            <view class="scroll-view-line scroll-view-line-end"></view>
+        </view>
+    </scroll-view>    
 </view>
+
+<wux-tabbar default-current="tab2" position="bottom" bindchange="tabbarchange">
+    <wux-tabbar-item key="tab-home" title="首页">
+        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="tab-swap" title="换向">
+        <wux-icon wux-class="icon" type="ios-swap" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-swap" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="tab-sync" title="刷新">
+        <wux-icon wux-class="icon" type="ios-sync" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-sync" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="tab-heart" title="收藏">
+        <wux-icon wux-class="icon" type="ios-heart" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-heart" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="tab-paw" title="推荐" share>
+        <wux-icon wux-class="icon" type="ios-paw" size="22" slot="icon-on" />
+        <wux-icon wux-class="icon" type="ios-paw" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+</wux-tabbar>
